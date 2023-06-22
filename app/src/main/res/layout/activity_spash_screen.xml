@@ -7,13 +7,12 @@
     android:background="@color/teal_700"
     tools:context=".SpashScreen">
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/splashext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:fontFamily="sans-serif-condensed"
         android:text="@string/my_foodie"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
