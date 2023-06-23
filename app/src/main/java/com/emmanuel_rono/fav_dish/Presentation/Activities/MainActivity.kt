@@ -1,4 +1,4 @@
-package com.emmanuel_rono.fav_dish
+package com.emmanuel_rono.fav_dish.Presentation.Activities
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.emmanuel_rono.fav_dish.R
 import com.emmanuel_rono.fav_dish.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

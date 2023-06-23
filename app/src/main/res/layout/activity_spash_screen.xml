@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_700"
-    tools:context=".SpashScreen">
+    tools:context=".Presentation.Activities.SpashScreen">
     <TextView
         android:id="@+id/splashext"
         android:layout_width="wrap_content"

@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.emmanuel_rono.fav_dish.ui.home.HomeFragment"
+        android:name="com.emmanuel_rono.fav_dish.Presentation.home.AllDishFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.emmanuel_rono.fav_dish.ui.dashboard.DashboardFragment"
+        android:name="com.emmanuel_rono.fav_dish.Presentation.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.emmanuel_rono.fav_dish.ui.notifications.NotificationsFragment"
+        android:name="com.emmanuel_rono.fav_dish.Presentation.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

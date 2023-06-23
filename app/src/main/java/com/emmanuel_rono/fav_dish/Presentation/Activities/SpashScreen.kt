@@ -1,19 +1,21 @@
-package com.emmanuel_rono.fav_dish
+package com.emmanuel_rono.fav_dish.Presentation.Activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.Window
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import com.emmanuel_rono.fav_dish.R
 import com.emmanuel_rono.fav_dish.databinding.ActivitySpashScreenBinding
 
 class SpashScreen : AppCompatActivity() {
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //create binding view
@@ -31,10 +33,10 @@ class SpashScreen : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAGS_CHANGED
             )
         }
-    val splashScreen=AnimationUtils.loadAnimation(this,R.anim.animation_splash)
+    val splashScreen=AnimationUtils.loadAnimation(this, R.anim.animation_splash)
     splashBinding.splashext.animation=splashScreen
         splashScreen.setAnimationListener(object :Animation.AnimationListener{
-           override fun onAnimationStart(p0: Animation?) {
+            override fun onAnimationStart(p0: Animation?) {
                /*/TODO("Not yet implemented")*/
             }
             override fun onAnimationEnd(p0: Animation?) {

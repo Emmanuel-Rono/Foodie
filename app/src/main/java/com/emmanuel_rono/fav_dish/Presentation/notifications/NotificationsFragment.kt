@@ -1,4 +1,4 @@
-package com.emmanuel_rono.fav_dish.ui.notifications
+package com.emmanuel_rono.fav_dish.Presentation.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater

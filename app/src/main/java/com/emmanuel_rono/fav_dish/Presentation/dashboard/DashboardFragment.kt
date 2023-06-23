@@ -1,4 +1,4 @@
-package com.emmanuel_rono.fav_dish.ui.dashboard
+package com.emmanuel_rono.fav_dish.Presentation.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
