@@ -39,18 +39,20 @@ class AllDishFragment  : Fragment() {
         }
         return root
     }
-
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_add_dish,menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
-
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){R.id.add_icon -> {
-            startActivity(Intent(requireActivity(),AddUpdateDish:class.java))
+        when (item.itemId){R.id.add_iconn -> {
+            startActivity(Intent(requireActivity(),AddUpdateDish::class.java))
             return true
         }
         }
+        return super.onOptionsItemSelected(item)
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
