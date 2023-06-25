@@ -52,7 +52,6 @@ class AllDishFragment  : Fragment() {
         }
         }
         return super.onOptionsItemSelected(item)
-
     }
     override fun onDestroyView() {
         super.onDestroyView()

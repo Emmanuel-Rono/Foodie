@@ -5,4 +5,16 @@
     <string name="title_notifications">Notifications</string>
     <string name="my_foodie">My_Foodie</string>
     <string name="add">Add</string>
+    <string name="username_string">Username</string>
+    <string name="password_string">Password</string>
+    <string name="login_string">LOGIN</string>
+    <string name="forgot_your_password___string">Forgot your Password ? </string>
+    <string name="ceate_account_string">Ceate Account</string>
+    <string name="or_string">or</string>
+    <string name="facebook_string">Facebook</string>
+    <string name="google_string">Google</string>
+    <string name="mkulima_plus_string">Mkulima Plus</string>
+    <string name="login_with_string">Login With</string>b
+    <string name="forgot_password_txt">Forgot Password ?</string>
+    <string name="create_account_txt">Create Account ?</string>
 </resources>
