@@ -50,9 +50,12 @@ class AddUpdateDish : AppCompatActivity() , View.OnClickListener{
         val dialog=Dialog(this)
         val binding:PopupScreenAddDishBinding=PopupScreenAddDishBinding.inflate(layoutInflater)
         dialog.setContentView(binding.root)
-        binding.imageForeground.setOnClickListener{
+        binding.addViaGallery.setOnClickListener{
             Toast.makeText(this,"Camera Clicked",Toast.LENGTH_LONG).show()
-            dialog.show()
         }
+        binding.addViaCamera.setOnClickListener{
+            Toast.makeText(this,"Camera Clicked",Toast.LENGTH_LONG).show()
+        }
+        dialog.show()
     }
 }
