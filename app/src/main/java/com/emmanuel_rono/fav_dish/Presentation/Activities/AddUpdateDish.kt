@@ -1,5 +1,7 @@
 package com.emmanuel_rono.fav_dish.Presentation.Activities
 
+import android.app.Dialog
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.icu.lang.UCharacter.GraphemeClusterBreak.V
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +11,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.emmanuel_rono.fav_dish.R
 import com.emmanuel_rono.fav_dish.databinding.ActivityAddUpdateDishBinding
+import com.emmanuel_rono.fav_dish.databinding.PopupScreenAddDishBinding
 
 class AddUpdateDish : AppCompatActivity() , View.OnClickListener{
      private lateinit var updateDishBinding:ActivityAddUpdateDishBinding
@@ -17,9 +20,8 @@ class AddUpdateDish : AppCompatActivity() , View.OnClickListener{
         updateDishBinding=ActivityAddUpdateDishBinding.inflate(layoutInflater)
         setContentView(updateDishBinding.root)
         setupActionbar()
-        updateDishBinding.dishImage.setOnClickListener(this)
+        updateDishBinding.addDishImage.setOnClickListener(this)
     }
-
 //Setting the Action Bar
     //create a function to do that
     private fun setupActionbar()
@@ -29,20 +31,28 @@ class AddUpdateDish : AppCompatActivity() , View.OnClickListener{
     //Set onclick Listerner
     updateDishBinding.toolbar.setNavigationOnClickListener{
     onBackPressed()
-
     }
 
 }
     @RequiresApi(Build.VERSION_CODES.N)
-    override fun onClick(p0: View?) {
-        if (p0 != null) {
-            when(p0.id){
-                R.id.add_dish_image -> {
-                    Toast.makeText(this,"Cmaera Clicked",Toast.LENGTH_SHORT).show()
+    override fun onClick(V: View?) {
+        if (V != null) {
+            when(V.id){
+                R.id.add_dish_image-> {
+                    ImageSelectionDialog()
                     return
                 }
-
             }
+        }
+    }
+    private fun ImageSelectionDialog()
+    {
+        val dialog=Dialog(this)
+        val binding:PopupScreenAddDishBinding=PopupScreenAddDishBinding.inflate(layoutInflater)
+        dialog.setContentView(binding.root)
+        binding.imageForeground.setOnClickListener{
+            Toast.makeText(this,"Camera Clicked",Toast.LENGTH_LONG).show()
+            dialog.show()
         }
     }
 }
