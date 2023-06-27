@@ -16,7 +16,8 @@
             android:name=".Presentation.Activities.AddUpdateDish"
             android:theme="@style/Theme.Fav_Dish.NoActionBar"
             android:label="Add Dish"
-            android:exported="false" >
+            android:exported="false"
+            android:configChanges="orientation">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
