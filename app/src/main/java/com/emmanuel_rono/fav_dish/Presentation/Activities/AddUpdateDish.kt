@@ -1,6 +1,9 @@
 package com.emmanuel_rono.fav_dish.Presentation.Activities
 
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Dialog
+import android.app.appsearch.SetSchemaRequest.READ_EXTERNAL_STORAGE
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.icu.lang.UCharacter.GraphemeClusterBreak.V
 import android.os.Build
@@ -9,9 +12,21 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import android.Manifest
+import android.app.AlertDialog
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import com.emmanuel_rono.fav_dish.R
 import com.emmanuel_rono.fav_dish.databinding.ActivityAddUpdateDishBinding
 import com.emmanuel_rono.fav_dish.databinding.PopupScreenAddDishBinding
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+
 
 class AddUpdateDish : AppCompatActivity() , View.OnClickListener{
      private lateinit var updateDishBinding:ActivityAddUpdateDishBinding
@@ -51,11 +66,51 @@ class AddUpdateDish : AppCompatActivity() , View.OnClickListener{
         val binding:PopupScreenAddDishBinding=PopupScreenAddDishBinding.inflate(layoutInflater)
         dialog.setContentView(binding.root)
         binding.addViaGallery.setOnClickListener{
-            Toast.makeText(this,"Camera Clicked",Toast.LENGTH_LONG).show()
+           Dexter.withContext( this).withPermissions(
+               Manifest.permission.READ_EXTERNAL_STORAGE,
+               Manifest.permission.WRITE_EXTERNAL_STORAGE,
+               Manifest.permission.CAMERA
+               ).withListener(object :MultiplePermissionsListener
+           {
+               override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                  if(report!!.areAllPermissionsGranted())
+                  {
+                      Toast.makeText(this@AddUpdateDish,"Got Permission",Toast.LENGTH_SHORT).show()
+                  }
+               }
+               override fun onPermissionRationaleShouldBeShown(
+                   Permissions: MutableList<PermissionRequest>?,
+                   Token: PermissionToken?
+               ) {
+                   showAlertDialogForPermissions()
+               }
+
+           }).onSameThread().check()
+            dialog.dismiss()
         }
         binding.addViaCamera.setOnClickListener{
             Toast.makeText(this,"Camera Clicked",Toast.LENGTH_LONG).show()
+            dialog.dismiss()
         }
         dialog.show()
     }
+    private fun showAlertDialogForPermissions()
+    {
+        AlertDialog.Builder(this).setMessage("ooops!, Looks Like you have Turned Off Permission Required for This Action")
+            .setPositiveButton("GO TO SETTINGS")
+            {_,_->
+                try {
+                    val intent= Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    val uri= Uri.fromParts("package",packageName,null)
+                    intent.data=uri
+                    startActivity(intent)
+                }catch (e:ActivityNotFoundException)
+                {
+                    e.printStackTrace()
+                }
+            }
+            .setNegativeButton("cancel"){dialog,_ ->
+                dialog.dismiss()}.show()
+    }
+
 }
