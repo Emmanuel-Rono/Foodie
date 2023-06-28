@@ -1,26 +1,20 @@
 package com.emmanuel_rono.fav_dish.Presentation.Activities
 
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.app.Dialog
-import android.app.appsearch.SetSchemaRequest.READ_EXTERNAL_STORAGE
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.icu.lang.UCharacter.GraphemeClusterBreak.V
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import android.Manifest
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
+import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
-import androidx.core.content.ContextCompat.startActivity
+import android.view.View
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.emmanuel_rono.fav_dish.R
 import com.emmanuel_rono.fav_dish.databinding.ActivityAddUpdateDishBinding
 import com.emmanuel_rono.fav_dish.databinding.PopupScreenAddDishBinding
@@ -125,17 +119,16 @@ class AddUpdateDish : AppCompatActivity() , View.OnClickListener{
 
         dialog.show()
     }
-
-    override fun onActivityReenter(resultCode: Int, data: Intent?) {
-        super.onActivityReenter(resultCode, data)
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode:Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode,data)
         if(resultCode== camra){
             data?.let {
                 val thumbnail:Bitmap= data.extras?.get("data") as Bitmap
-                updateDishBinding.dishImage.setImageBitmap(thumbnail)
+                updateDishBinding.dishimage.setImageBitmap(thumbnail)
             }
         }
     }
-
     private fun showAlertDialogForPermissions()
     {
         AlertDialog.Builder(this).setMessage("ooops!, Looks Like you have Turned Off Permission Required for This Action")
