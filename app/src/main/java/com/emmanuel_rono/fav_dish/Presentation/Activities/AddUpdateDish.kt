@@ -16,16 +16,22 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
+import android.provider.MediaStore
 import android.provider.Settings
+import androidx.core.content.ContextCompat.startActivity
 import com.emmanuel_rono.fav_dish.R
 import com.emmanuel_rono.fav_dish.databinding.ActivityAddUpdateDishBinding
 import com.emmanuel_rono.fav_dish.databinding.PopupScreenAddDishBinding
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.karumi.dexter.listener.single.PermissionListener
 
 
 class AddUpdateDish : AppCompatActivity() , View.OnClickListener{
@@ -65,35 +71,71 @@ class AddUpdateDish : AppCompatActivity() , View.OnClickListener{
         val dialog=Dialog(this)
         val binding:PopupScreenAddDishBinding=PopupScreenAddDishBinding.inflate(layoutInflater)
         dialog.setContentView(binding.root)
+
+
+        binding.addViaCamera.setOnClickListener{
+            Dexter.withContext( this).withPermissions(
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA
+            ).withListener(object :MultiplePermissionsListener
+            {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                    report?.let {
+                        if(report.areAllPermissionsGranted())
+                        {
+                            val intent=Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                            startActivityForResult(intent, camra)
+                    }
+
+                    }
+                }
+                override fun onPermissionRationaleShouldBeShown(
+                    Permissions: MutableList<PermissionRequest>?,
+                    Token: PermissionToken?
+                ) {
+                    showAlertDialogForPermissions()
+                }
+
+            }).onSameThread().check()
+            dialog.dismiss()
+        }
+
+
         binding.addViaGallery.setOnClickListener{
-           Dexter.withContext( this).withPermissions(
+           Dexter.withContext( this).withPermission(
                Manifest.permission.READ_EXTERNAL_STORAGE,
-               Manifest.permission.WRITE_EXTERNAL_STORAGE,
-               Manifest.permission.CAMERA
-               ).withListener(object :MultiplePermissionsListener
+               ).withListener(object:PermissionListener
            {
-               override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-                  if(report!!.areAllPermissionsGranted())
-                  {
-                      Toast.makeText(this@AddUpdateDish,"Got Permission",Toast.LENGTH_SHORT).show()
-                  }
+               override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
+                  Toast.makeText(this@AddUpdateDish, "Got gallery Permission",Toast.LENGTH_LONG).show()
+               }
+               override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
+                   Toast.makeText(this@AddUpdateDish,"Denied Permission",Toast.LENGTH_SHORT).show()
                }
                override fun onPermissionRationaleShouldBeShown(
-                   Permissions: MutableList<PermissionRequest>?,
-                   Token: PermissionToken?
+                   p0: PermissionRequest?,
+                   p1: PermissionToken?
                ) {
-                   showAlertDialogForPermissions()
+                  showAlertDialogForPermissions()
                }
 
            }).onSameThread().check()
             dialog.dismiss()
         }
-        binding.addViaCamera.setOnClickListener{
-            Toast.makeText(this,"Camera Clicked",Toast.LENGTH_LONG).show()
-            dialog.dismiss()
-        }
+
         dialog.show()
     }
+
+    override fun onActivityReenter(resultCode: Int, data: Intent?) {
+        super.onActivityReenter(resultCode, data)
+        if(resultCode== camra){
+            data?.let {
+                val thumbnail:Bitmap= data.extras?.get("data") as Bitmap
+                updateDishBinding.dishImage.setImageBitmap(thumbnail)
+            }
+        }
+    }
+
     private fun showAlertDialogForPermissions()
     {
         AlertDialog.Builder(this).setMessage("ooops!, Looks Like you have Turned Off Permission Required for This Action")
@@ -111,6 +153,9 @@ class AddUpdateDish : AppCompatActivity() , View.OnClickListener{
             }
             .setNegativeButton("cancel"){dialog,_ ->
                 dialog.dismiss()}.show()
+    }
+    companion object{
+        private const val camra=1
     }
 
 }

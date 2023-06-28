@@ -15,7 +15,7 @@
         android:elevation="4dp">
 
         <LinearLayout
-            android:id="@+id/add_via_Camera"
+            android:id="@+id/add_via_Gallery"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -49,7 +49,7 @@
         android:elevation="4dp">
 
         <LinearLayout
-            android:id="@+id/add_via_gallery"
+            android:id="@+id/add_via_Camera"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
