@@ -184,7 +184,6 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
             }
             .show()
     }
-
     companion object {
         private const val REQUEST_CODE_CAMERA = 1
         private const val REQUEST_CODE_GALLERY=2
