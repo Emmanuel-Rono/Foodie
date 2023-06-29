@@ -31,5 +31,20 @@ object Constants {
         list.add("Avacado")
         list.add("Melon")
         list.add("Ugali")
+        return list
+    }
+    fun CookTime():ArrayList<String>{
+
+        val list= ArrayList<String>()
+        list.add("10")
+        list.add("20")
+        list.add("130")
+        list.add("40")
+        list.add("50")
+        list.add("60")
+        list.add("70")
+        list.add("80")
+        list.add("90")
+        return list
     }
 }
