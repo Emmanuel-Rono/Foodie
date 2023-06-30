@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/_10sdp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAllCaps="true"
+        android:textSize="@dimen/_16sdp"
+        android:padding="@dimen/_10sdp"
+        android:gravity="center"
+        android:background="@color/gray"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="195dp" />
+    <View
+        android:id="@+id/title2_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_3sdp"
+        android:backgroundTint="@color/teal_700"
+        android:gravity="center"
+        android:background="@color/gray"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="195dp" />
+</LinearLayout>
