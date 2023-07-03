@@ -17,4 +17,7 @@
     <string name="login_with_string">Login With</string>b
     <string name="forgot_password_txt">Forgot Password ?</string>
     <string name="create_account_txt">Create Account ?</string>
+    <string name="dish_dish_type">SELECT DISH TYPE</string>
+    <string name="dish_Category">SELECT DISH CATEGORY</string>
+    <string name="dish_cook_time">SELECT DISH COOKING TIME</string>
 </resources>

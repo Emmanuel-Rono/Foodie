@@ -8,6 +8,7 @@ import android.widget.Adapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Recycler
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.emmanuel_rono.fav_dish.Presentation.Activities.AddUpdateDish
 import com.emmanuel_rono.fav_dish.databinding.DialoglistBinding
 
 class dialoListAdapter(
@@ -32,7 +33,12 @@ val binding:DialoglistBinding=DialoglistBinding.inflate(LayoutInflater.from(acti
     override fun onBindViewHolder(holder: dialogListViwHOlder, position: Int) {
 val item=listItems[position]
         holder.tvtext.text=item
+        holder.itemView.setOnClickListener {
+            if (activity is AddUpdateDish) {
+                activity.seletedListItem(item, selection)
+            }
 
+        }
     }
     override fun getItemCount(): Int {
         return listItems.size

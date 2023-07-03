@@ -8,6 +8,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
+import com.emmanuel_rono.fav_dish.utils.Constants
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
@@ -21,7 +22,6 @@ import com.emmanuel_rono.fav_dish.Domain.dialoListAdapter
 import com.emmanuel_rono.fav_dish.R
 import com.emmanuel_rono.fav_dish.databinding.ActivityAddUpdateDishBinding
 import com.emmanuel_rono.fav_dish.databinding.DialogListRecyclerviewBinding
-import com.emmanuel_rono.fav_dish.databinding.DialoglistBinding
 import com.emmanuel_rono.fav_dish.databinding.PopupScreenAddDishBinding
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -35,6 +35,7 @@ import com.karumi.dexter.listener.single.PermissionListener
 class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var updateDishBinding: ActivityAddUpdateDishBinding
+    private lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +44,10 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
         setupActionBar()
         updateDishBinding.addDishImage.setOnClickListener(this)
         updateDishBinding.dishimage.setOnClickListener(this)
-        updateDishBinding.TitleBio.setOnClickListener(this)
-        updateDishBinding.titleType.setOnClickListener(this)
-        updateDishBinding.TitleTxt.setOnClickListener(this)
+        updateDishBinding.dishTypeName.setOnClickListener(this)
+        updateDishBinding.dishCategoryName.setOnClickListener(this)
+        updateDishBinding.dishTime.setOnClickListener(this)
     }
-
     private fun setupActionBar() {
         setSupportActionBar(updateDishBinding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -55,24 +55,36 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
             onBackPressed()
         }
     }
-
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onClick(view: View) {
         when (view.id) {
             R.id.addDishImage -> {
                 imageSelectionDialog()
             }
-            R.id.Title_txt->{
-                dialogListDialog(title  )
+            R.id.dish_category_name->{
+                dialogListDialog(resources.getString(R.string.dish_Category),
+                Constants.dishCategory(),
+                Constants.DISH_CATEGORY)
+                return
+            }
+            R.id.dish_Time->{
+                dialogListDialog(resources.getString(R.string.dish_cook_time),
+                Constants.CookTime(),
+                    Constants.DISH_COOKING_TIME)
+                return
+            }
+            R.id.dish_Type_name->{
+                dialogListDialog(resources.getString(R.string.dish_dish_type),
+                    Constants.dish_Names(),
+                    Constants.DISH_TYPE)
+                return
             }
         }
     }
-
     private fun imageSelectionDialog() {
-        val dialog = Dialog(this)
+        dialog = Dialog(this)
         val binding: PopupScreenAddDishBinding = PopupScreenAddDishBinding.inflate(layoutInflater)
         dialog.setContentView(binding.root)
-
         binding.addViaCamera.setOnClickListener {
             requestCameraPermission()
             dialog.dismiss()
@@ -82,9 +94,10 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
             requestGalleryPermission()
             dialog.dismiss()
         }
-
         dialog.show()
     }
+
+
 
     private fun requestCameraPermission() {
         Dexter.withContext(this)
@@ -100,7 +113,6 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
                         showPermissionDeniedDialog()
                     }
                 }
-
                 override fun onPermissionRationaleShouldBeShown(
                     permissions: MutableList<PermissionRequest>?,
                     token: PermissionToken?
@@ -109,7 +121,6 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
                 }
             }).check()
     }
-
     private fun requestGalleryPermission() {
         Dexter.withContext(this)
             .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -148,7 +159,6 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, REQUEST_CODE_GALLERY)
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
@@ -209,6 +219,25 @@ customDialog.show()
 
 
     }
+
+ fun  seletedListItem(item:String, selection: String) {
+        when (selection) {
+            Constants.DISH_TYPE -> {
+                dialog.dismiss()
+                updateDishBinding.dishTypeName.setText(item)
+            }
+
+            Constants.DISH_CATEGORY -> {
+                dialog.dismiss()
+                updateDishBinding.dishCategoryName.setText(item)
+            }
+            else -> {
+                Constants.DISH_COOKING_TIME
+                    dialog.dismiss()
+                    updateDishBinding.dishTime.setText(item)
+                }
+            }
+        }
 
     companion object {
         private const val REQUEST_CODE_CAMERA = 1

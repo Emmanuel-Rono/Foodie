@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Presentation.Activities.AddUpdateDish">
 
     <androidx.appcompat.widget.Toolbar
@@ -55,10 +55,9 @@
                     app:srcCompat="@drawable/camera_icon" />
             </FrameLayout>
             <EditText
-                android:id="@+id/Title_txt"
+                android:id="@+id/dish_category_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:hint="Title"
                 android:textSize="@dimen/_16sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -66,27 +65,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/frameLayout_add_update_dish" />
 
             <EditText
-                android:id="@+id/title_type"
+                android:id="@+id/dish_Type_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:hint="Type"
                 android:textSize="@dimen/_16sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Title_txt" />
+                app:layout_constraintTop_toBottomOf="@+id/dish_category_name" />
 
             <EditText
-                android:id="@+id/Title_Bio"
+                android:id="@+id/dish_Time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:hint="About"
                 android:textSize="@dimen/_16sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_type" />
+                app:layout_constraintTop_toBottomOf="@+id/dish_Type_name" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
