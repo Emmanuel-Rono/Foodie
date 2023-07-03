@@ -16,8 +16,12 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.emmanuel_rono.fav_dish.Domain.dialoListAdapter
 import com.emmanuel_rono.fav_dish.R
 import com.emmanuel_rono.fav_dish.databinding.ActivityAddUpdateDishBinding
+import com.emmanuel_rono.fav_dish.databinding.DialogListRecyclerviewBinding
+import com.emmanuel_rono.fav_dish.databinding.DialoglistBinding
 import com.emmanuel_rono.fav_dish.databinding.PopupScreenAddDishBinding
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -39,6 +43,9 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
         setupActionBar()
         updateDishBinding.addDishImage.setOnClickListener(this)
         updateDishBinding.dishimage.setOnClickListener(this)
+        updateDishBinding.TitleBio.setOnClickListener(this)
+        updateDishBinding.titleType.setOnClickListener(this)
+        updateDishBinding.TitleTxt.setOnClickListener(this)
     }
 
     private fun setupActionBar() {
@@ -54,6 +61,9 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
         when (view.id) {
             R.id.addDishImage -> {
                 imageSelectionDialog()
+            }
+            R.id.Title_txt->{
+                dialogListDialog(title  )
             }
         }
     }
@@ -184,6 +194,22 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
             }
             .show()
     }
+
+    private fun dialogListDialog(title:String, itemList:List<String>,selection:String)
+    {
+        //create the dialog
+        val customDialog=Dialog(this)
+        val binding:DialogListRecyclerviewBinding=DialogListRecyclerviewBinding.inflate(layoutInflater)
+        customDialog.setContentView(binding.root)
+        binding.dialogTitle.text=title
+        binding.listRecyclerview.layoutManager=LinearLayoutManager(this)
+         val adapter=dialoListAdapter(this,itemList,selection)
+        binding.listRecyclerview.adapter=adapter
+customDialog.show()
+
+
+    }
+
     companion object {
         private const val REQUEST_CODE_CAMERA = 1
         private const val REQUEST_CODE_GALLERY=2

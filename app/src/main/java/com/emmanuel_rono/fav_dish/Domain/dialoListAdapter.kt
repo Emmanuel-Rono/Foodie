@@ -34,7 +34,6 @@ val item=listItems[position]
         holder.tvtext.text=item
 
     }
-
     override fun getItemCount(): Int {
         return listItems.size
     }
