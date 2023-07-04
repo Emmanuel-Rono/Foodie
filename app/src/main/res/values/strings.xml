@@ -20,4 +20,10 @@
     <string name="dish_dish_type">SELECT DISH TYPE</string>
     <string name="dish_Category">SELECT DISH CATEGORY</string>
     <string name="dish_cook_time">SELECT DISH COOKING TIME</string>
+    <string name="dish_add_buttone">Add Dish</string>
+
+    <string name="err_Category_Et">Input the Category</string>
+    <string name="err_TypeOfFood_Et">Input the Type Of Food</string>
+    <string name="err_Cooking_Time_Et">Input the Cooking Time</string>
+    <string name="err_Cooking_Guide_Et">Input the Cooking guide</string>
 </resources>

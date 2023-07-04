@@ -12,6 +12,7 @@ import com.emmanuel_rono.fav_dish.utils.Constants
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -47,6 +48,7 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
         updateDishBinding.dishTypeName.setOnClickListener(this)
         updateDishBinding.dishCategoryName.setOnClickListener(this)
         updateDishBinding.dishTime.setOnClickListener(this)
+        updateDishBinding.addDishButton.setOnClickListener(this)
     }
     private fun setupActionBar() {
         setSupportActionBar(updateDishBinding.toolbar)
@@ -78,6 +80,35 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
                     Constants.dish_Names(),
                     Constants.DISH_TYPE)
                 return
+            }
+            R.id.add_dish_button ->
+            {
+                val category_title=updateDishBinding.dishCategoryName.text.toString().trim { it <=' '}
+                val typeOfFood_title=updateDishBinding.dishTypeName.text.toString().trim { it <=' '}
+                val time_title=updateDishBinding.dishTime.text.toString().trim { it <=' '}
+                val cooking_guide_title=updateDishBinding.cookGuideSteps.text.toString().trim { it <=' '}
+when{
+    TextUtils.isEmpty(category_title) ->{
+        Toast.makeText(this@AddUpdateDish, R.string.err_Category_Et, Toast.LENGTH_LONG).show()
+    }
+    TextUtils.isEmpty(category_title) ->{
+        Toast.makeText(this@AddUpdateDish, R.string.err_Category_Et, Toast.LENGTH_LONG).show()
+    }
+    TextUtils.isEmpty(typeOfFood_title) ->{
+        Toast.makeText(this@AddUpdateDish, R.string.err_TypeOfFood_Et, Toast.LENGTH_LONG).show()
+    }
+    TextUtils.isEmpty(time_title) ->{
+        Toast.makeText(this@AddUpdateDish, R.string.err_Cooking_Time_Et, Toast.LENGTH_LONG).show()
+    }
+    TextUtils.isEmpty(cooking_guide_title) ->{
+        Toast.makeText(this@AddUpdateDish, R.string.err_Cooking_Guide_Et, Toast.LENGTH_LONG).show()
+    }
+    else ->
+    {
+        Toast.makeText(this@AddUpdateDish,"All entries Correct",Toast.LENGTH_LONG).show()
+    }
+}
+
             }
         }
     }
@@ -234,6 +265,8 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
                     updateDishBinding.dishTime.setText(item)
                 }
             }
+
+
         }
 
     companion object {
