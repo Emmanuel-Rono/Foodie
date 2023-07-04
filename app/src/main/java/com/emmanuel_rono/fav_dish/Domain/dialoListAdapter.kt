@@ -1,5 +1,6 @@
 package com.emmanuel_rono.fav_dish.Domain
 
+
 import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
@@ -17,14 +18,11 @@ class dialoListAdapter(
     private val selection:String
 ): RecyclerView.Adapter<dialoListAdapter.dialogListViwHOlder>()
 {
-
-
     inner class dialogListViwHOlder(View:DialoglistBinding) :ViewHolder(View.root)
     {
         val tvtext=View.titleTv
 
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): dialogListViwHOlder {
 val binding:DialoglistBinding=DialoglistBinding.inflate(LayoutInflater.from(activity),parent,false)
         return dialogListViwHOlder(binding)

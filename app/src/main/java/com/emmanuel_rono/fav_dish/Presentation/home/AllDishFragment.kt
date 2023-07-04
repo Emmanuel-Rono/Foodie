@@ -1,5 +1,6 @@
 package com.emmanuel_rono.fav_dish.Presentation.home
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.emmanuel_rono.fav_dish.Presentation.Activities.AddUpdateDish
 import com.emmanuel_rono.fav_dish.R
+
 import com.emmanuel_rono.fav_dish.databinding.FragmentHomeBinding
 
 class AllDishFragment  : Fragment() {
@@ -47,7 +49,7 @@ class AllDishFragment  : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){R.id.add_iconn -> {
-            startActivity(Intent(requireActivity(),AddUpdateDish::class.java))
+            startActivity(Intent(requireActivity(), AddUpdateDish::class.java))
             return true
         }
         }
