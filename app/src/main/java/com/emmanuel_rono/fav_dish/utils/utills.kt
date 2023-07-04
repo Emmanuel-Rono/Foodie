@@ -3,7 +3,7 @@ package com.emmanuel_rono.fav_dish.utils
 object Constants {
     const val DISH_TYPE:String="Dish_Type"
     const val DISH_CATEGORY:String="Dish_Category"
-    const val DISH_COOKING_TIME:String="Dish_Type"
+    const val DISH_COOKING_TIME:String="DISH_COOKING_TIME"
 
     //Create the data
     fun dishCategory():ArrayList<String>
@@ -34,7 +34,6 @@ object Constants {
         return list
     }
     fun CookTime():ArrayList<String>{
-
         val list= ArrayList<String>()
         list.add("10")
         list.add("20")

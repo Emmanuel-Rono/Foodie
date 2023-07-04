@@ -41,7 +41,6 @@
 
                 <ImageView
                     android:id="@+id/dishimage"
-                    android:background="@color/teal_700"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:scaleType="fitXY"
@@ -49,6 +48,7 @@
 
                 <ImageView
                     android:id="@+id/addDishImage"
+                    android:padding="@dimen/_10sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom"
@@ -56,9 +56,11 @@
             </FrameLayout>
             <EditText
                 android:id="@+id/dish_category_name"
+                android:padding="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Title"
+                android:hint="category"
+                android:layout_margin="@dimen/_10sdp"
                 android:textSize="@dimen/_16sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="parent"
@@ -66,10 +68,12 @@
 
             <EditText
                 android:id="@+id/dish_Type_name"
+                android:padding="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Type"
+                android:hint="type of food"
                 android:textSize="@dimen/_16sdp"
+                android:layout_margin="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dish_category_name" />
@@ -78,12 +82,34 @@
                 android:id="@+id/dish_Time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="About"
+                android:hint="time"
+                android:layout_margin="@dimen/_10sdp"
                 android:textSize="@dimen/_16sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dish_Type_name" />
+      <EditText
+          android:id="@+id/cook_guide_steps"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/_150sdp"
+          android:padding="@dimen/_10sdp"
+          android:hint="Coking Guide"
+          android:layout_margin="@dimen/_10sdp"
+          android:textSize="@dimen/_16sdp"
+          app:layout_constraintTop_toBottomOf="@id/dish_Time"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/cook_guide_steps"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/teal_700"
+                android:text="Add dish"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

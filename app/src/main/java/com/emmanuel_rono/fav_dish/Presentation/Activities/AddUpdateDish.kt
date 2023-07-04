@@ -35,7 +35,7 @@ import com.karumi.dexter.listener.single.PermissionListener
 class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var updateDishBinding: ActivityAddUpdateDishBinding
-    private lateinit var customDialog: Dialog
+    private lateinit var dcustomDialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,8 +96,6 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
         }
         customDialog.show()
     }
-
-
 
     private fun requestCameraPermission() {
         Dexter.withContext(this)
@@ -205,40 +203,39 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
             .show()
     }
 
-    private fun dialogListDialog(title:String, itemList:List<String>,selection:String)
-    {
+    private fun dialogListDialog(title:String, itemList:List<String>,selection:String) {
         //create the dialog
-        val customDialog=Dialog(this)
-        val binding:DialogListRecyclerviewBinding=DialogListRecyclerviewBinding.inflate(layoutInflater)
-        customDialog.setContentView(binding.root)
-        binding.dialogTitle.text=title
-        binding.listRecyclerview.layoutManager=LinearLayoutManager(this)
-        val adapter=dialoListAdapter(this,itemList,selection)
-        binding.listRecyclerview.adapter=adapter
-        customDialog.show()
-
+         dcustomDialog = Dialog(this)
+        val binding: DialogListRecyclerviewBinding =
+            DialogListRecyclerviewBinding.inflate(layoutInflater)
+        dcustomDialog.setContentView(binding.root)
+        binding.dialogTitle.text = title
+        binding.listRecyclerview.layoutManager = LinearLayoutManager(this)
+        val adapter = dialoListAdapter(this, itemList, selection)
+        binding.listRecyclerview.adapter = adapter
+        dcustomDialog.show()
 
     }
+        fun seletedListItem(item: String, selection: String) {
+            //dcustomDialog = Dialog(this)
+            when (selection) {
+                Constants.DISH_TYPE -> {
+                    dcustomDialog.dismiss()
+                    updateDishBinding.dishTypeName.setText(item)
+                }
 
-    fun  seletedListItem(item:String, selection: String) {
-        //val  dialog=Dialog(this)
-        when (selection) {
-            Constants.DISH_TYPE -> {
-                customDialog.dismiss()
-                updateDishBinding.dishTypeName.setText(item)
-            }
-
-            Constants.DISH_CATEGORY -> {
-                customDialog.dismiss()
-                updateDishBinding.dishCategoryName.setText(item)
-            }
-            else -> {
-                customDialog.dismiss()
-                Constants.DISH_COOKING_TIME
-                updateDishBinding.dishTime.setText(item)
+                Constants.DISH_CATEGORY -> {
+                    dcustomDialog.dismiss()
+                    updateDishBinding.dishCategoryName.setText(item)
+                }
+               Constants.DISH_COOKING_TIME-> {
+                    dcustomDialog.dismiss()
+                    Constants.DISH_COOKING_TIME
+                    updateDishBinding.dishTime.setText(item)
+                }
             }
         }
-    }
+
     companion object {
         private const val REQUEST_CODE_CAMERA = 1
         private const val REQUEST_CODE_GALLERY=2
