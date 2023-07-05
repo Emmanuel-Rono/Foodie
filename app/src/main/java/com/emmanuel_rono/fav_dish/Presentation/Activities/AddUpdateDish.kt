@@ -19,7 +19,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.emmanuel_rono.fav_dish.Domain.dialoListAdapter
+import com.emmanuel_rono.fav_dish.Domain.Adapters.dialoListAdapter
 import com.emmanuel_rono.fav_dish.R
 import com.emmanuel_rono.fav_dish.databinding.ActivityAddUpdateDishBinding
 import com.emmanuel_rono.fav_dish.databinding.DialogListRecyclerviewBinding

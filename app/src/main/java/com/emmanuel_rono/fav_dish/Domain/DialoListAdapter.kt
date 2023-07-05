@@ -1,13 +1,10 @@
-package com.emmanuel_rono.fav_dish.Domain
+package com.emmanuel_rono.fav_dish.Domain.Adapters
 
 
 import android.app.Activity
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.emmanuel_rono.fav_dish.Presentation.Activities.AddUpdateDish
 import com.emmanuel_rono.fav_dish.databinding.DialoglistBinding
