@@ -61,8 +61,6 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
         updateDishBinding.dishTime.setOnClickListener(this)
         updateDishBinding.addDishButton.setOnClickListener(this)
 
-
-
     }
     private fun setupActionBar() {
         setSupportActionBar(updateDishBinding.toolbar)
