@@ -22,6 +22,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.emmanuel_rono.fav_dish.Application.favDishApplication
 import com.emmanuel_rono.fav_dish.Data.ViewModel.viewModel
 import com.emmanuel_rono.fav_dish.Data.ViewModel.viewModelProviderFactory
 import com.emmanuel_rono.fav_dish.Data.fav_Dish
@@ -43,8 +44,9 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var updateDishBinding: ActivityAddUpdateDishBinding
     private lateinit var dcustomDialog: Dialog
+
     val favDishViewModel: viewModel by viewModels {
-        viewModelProviderFactory((application as viewModel).repository)
+        viewModelProviderFactory((application as favDishApplication).repository)
 
     }
     override fun onCreate(savedInstanceState: Bundle?) {
