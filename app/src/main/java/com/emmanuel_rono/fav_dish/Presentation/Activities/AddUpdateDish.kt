@@ -12,13 +12,19 @@ import com.emmanuel_rono.fav_dish.utils.Constants
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.provider.SyncStateContract.Helpers.insert
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.emmanuel_rono.fav_dish.Data.ViewModel.viewModel
+import com.emmanuel_rono.fav_dish.Data.ViewModel.viewModelProviderFactory
+import com.emmanuel_rono.fav_dish.Data.fav_Dish
 import com.emmanuel_rono.fav_dish.Domain.Adapters.dialoListAdapter
 import com.emmanuel_rono.fav_dish.R
 import com.emmanuel_rono.fav_dish.databinding.ActivityAddUpdateDishBinding
@@ -37,7 +43,10 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var updateDishBinding: ActivityAddUpdateDishBinding
     private lateinit var dcustomDialog: Dialog
+    val favDishViewModel: viewModel by viewModels {
+        viewModelProviderFactory((application as viewModel).repository)
 
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         updateDishBinding = ActivityAddUpdateDishBinding.inflate(layoutInflater)
@@ -49,6 +58,9 @@ class AddUpdateDish : AppCompatActivity(), View.OnClickListener {
         updateDishBinding.dishCategoryName.setOnClickListener(this)
         updateDishBinding.dishTime.setOnClickListener(this)
         updateDishBinding.addDishButton.setOnClickListener(this)
+
+
+
     }
     private fun setupActionBar() {
         setSupportActionBar(updateDishBinding.toolbar)
@@ -91,9 +103,6 @@ when{
     TextUtils.isEmpty(category_title) ->{
         Toast.makeText(this@AddUpdateDish, R.string.err_Category_Et, Toast.LENGTH_LONG).show()
     }
-    TextUtils.isEmpty(category_title) ->{
-        Toast.makeText(this@AddUpdateDish, R.string.err_Category_Et, Toast.LENGTH_LONG).show()
-    }
     TextUtils.isEmpty(typeOfFood_title) ->{
         Toast.makeText(this@AddUpdateDish, R.string.err_TypeOfFood_Et, Toast.LENGTH_LONG).show()
     }
@@ -105,13 +114,25 @@ when{
     }
     else ->
     {
-        Toast.makeText(this@AddUpdateDish,"All entries Correct",Toast.LENGTH_LONG).show()
-    }
-}
+        //Toast.makeText(this@AddUpdateDish,"All entries Correct",Toast.LENGTH_LONG).show()
+        val favDishDetails= fav_Dish(
+            category_title,
+            typeOfFood_title,
+            time_title,
+            cooking_guide_title,
+        )
+        favDishViewModel.insert(favDishDetails)
+        Toast.makeText(this@AddUpdateDish,"Success",Toast.LENGTH_LONG).show()
+        Log.i("Insertion","Sucess")
+        finish()
 
+    }
+
+}
             }
         }
     }
+
     private fun imageSelectionDialog() {
         val customDialog= Dialog(this)
         val binding: PopupScreenAddDishBinding = PopupScreenAddDishBinding.inflate(layoutInflater)

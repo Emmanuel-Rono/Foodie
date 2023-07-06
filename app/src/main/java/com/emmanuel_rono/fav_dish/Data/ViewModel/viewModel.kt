@@ -7,8 +7,7 @@ import com.emmanuel_rono.fav_dish.Data.Database.favDishRepository
 import com.emmanuel_rono.fav_dish.Data.fav_Dish
 import kotlinx.coroutines.launch
 
-class viewModel(private val repository:favDishRepository):ViewModel() {
-
+class viewModel(val repository:favDishRepository):ViewModel() {
         fun insert(dish:fav_Dish)= viewModelScope.launch {
             repository.insertFavDishData(dish)
         }

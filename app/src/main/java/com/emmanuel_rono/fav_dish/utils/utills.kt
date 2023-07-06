@@ -5,6 +5,9 @@ object Constants {
     const val DISH_CATEGORY:String="Dish_Category"
     const val DISH_COOKING_TIME:String="DISH_COOKING_TIME"
 
+    const val DISH_IAGE_SOURCE_LOCAL:String="local"
+    const val DISH_IAGE_SOURCE_ONLINE :String="online"
+
     //Create the data
     fun dishCategory():ArrayList<String>
     {
